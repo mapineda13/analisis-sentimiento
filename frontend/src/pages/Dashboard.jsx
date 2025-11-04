@@ -3,7 +3,7 @@ import axios from 'axios';
 import PieChart from '../components/PieChart';
 import BarChart from '../components/BarChart';
 import MessageFeed from '../components/MessageFeed';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 
 const Dashboard = () => {
   const [resumen, setResumen] = useState({ positivo: 0, negativo: 0, neutro: 0 });
@@ -39,15 +39,35 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <Container className="py-4">
-      <h1 className="mb-4">Dashboard de Sentimientos</h1>
-      <Row className="mb-4">
-        <Col md={6}><PieChart data={resumen} /></Col>
-        <Col md={6}><BarChart temas={temas} /></Col>
-      </Row>
-      <h2 className="mb-3">Mensajes Recientes</h2>
-      <MessageFeed mensajes={mensajes} />
-    </Container>
+            <Container className="py-4">
+              <h1 className="mb-4 text-center">Dashboard de Sentimientos</h1>
+
+              <Row className="mb-4">
+                <Col md={6}>
+                  <Card className="shadow-sm">
+                    <Card.Header className="bg-primary text-white">Distribución de Sentimientos</Card.Header>
+                    <Card.Body>
+                      <PieChart data={resumen} />
+                    </Card.Body>
+                  </Card>
+                </Col>
+                <Col md={6}>
+                  <Card className="shadow-sm">
+                    <Card.Header className="bg-success text-white">Frecuencia por Tema</Card.Header>
+                    <Card.Body>
+                      <BarChart temas={temas} />
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+
+              <Card className="shadow-sm">
+                <Card.Header className="bg-dark text-white">Mensajes Recientes</Card.Header>
+                <Card.Body style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                  <MessageFeed mensajes={mensajes} />
+                </Card.Body>
+              </Card>
+            </Container>
   );
 };
 
