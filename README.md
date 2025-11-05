@@ -31,3 +31,4 @@ Cada mensaje se analiza y se guarda con esta estructura:
   "resumen": "Clasificado como 5 stars con 0.98 de confianza. Tema detectado: Servicio al Cliente.",
   "motor": "transformers"
 }
+## Configuracion inicial del proyecto
